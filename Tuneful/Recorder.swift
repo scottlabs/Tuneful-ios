@@ -42,16 +42,25 @@ class Recorder : NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     }
     
     func play() {
-        let url = NSURL.fileURLWithPath(homePath+"/charlie.mp3")
+        let path = NSBundle.mainBundle().pathForResource(nil, ofType: "mp3")
+        let url = NSURL.fileURLWithPath(path)
         var err : NSError? = nil
-//        println(url)
-        let audioPlayer = AVAudioPlayer(contentsOfURL: url, error: &err)
+
+        let fileData = NSData(contentsOfURL: url)
+        err = nil
+
+        
+        let audioPlayer = AVAudioPlayer(data: fileData, error: &err)
+        audioPlayer.prepareToPlay()
+        
+        
+        
         if (err) {
             println(err.description)
             return
         }
         audioPlayer.delegate = self
-        audioPlayer.prepareToPlay()
+        
         audioPlayer.play()
         println(audioPlayer.playing)
     }
@@ -70,14 +79,12 @@ class Recorder : NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     func record() {
         play()
         return
-        
-        
-        /*
+
         var err : NSError? = nil
         
         
-        if (audioSession.respondsToSelector("requestRecordPermission:")) {
-            audioSession.requestRecordPermission({(granted: Bool)-> Void in
+        if (self.audioSession.respondsToSelector("requestRecordPermission:")) {
+            self.audioSession.requestRecordPermission({(granted: Bool)-> Void in
                 if granted {
                     println("granted")
         
@@ -104,15 +111,14 @@ class Recorder : NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
                     recorder.meteringEnabled = true
                     recorder.delegate = self
                     
-                    if (!audioSession.inputAvailable ) {
+                    if (!self.audioSession.inputAvailable ) {
                         println("fuck my life")
                         return
                     }
                     
-                    let interval = NSTimeInterval(1)
+                    let interval = NSTimeInterval(3)
                     
                     recorder.recordForDuration(interval)
-//                    println(recorder.delegate.audioRecorderBeginInterruption)
                     
                 } else{
                     println("not granted")
@@ -120,7 +126,6 @@ class Recorder : NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
             })
             
         }
-        */
         
 
     }
