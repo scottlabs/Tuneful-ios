@@ -13,8 +13,8 @@
 		340C38B9197ADE16004D9332 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 340C38B8197ADE16004D9332 /* Images.xcassets */; };
 		340C38C5197ADE16004D9332 /* TunefulTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C38C4197ADE16004D9332 /* TunefulTests.swift */; };
 		3478DD45197C229E006B654E /* fox.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3478DD44197C229E006B654E /* fox.mp3 */; };
-		34952956197C64E800977882 /* WaveformImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34952955197C64E800977882 /* WaveformImageView.swift */; };
 		34F075B8197AE549004E819E /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F075B7197AE549004E819E /* Recorder.swift */; };
+		AF9081B419805B980024E026 /* WaveformImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9081B319805B980024E026 /* WaveformImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +38,8 @@
 		340C38C3197ADE16004D9332 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		340C38C4197ADE16004D9332 /* TunefulTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunefulTests.swift; sourceTree = "<group>"; };
 		3478DD44197C229E006B654E /* fox.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fox.mp3; sourceTree = "<group>"; };
-		34952955197C64E800977882 /* WaveformImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveformImageView.swift; sourceTree = "<group>"; };
 		34F075B7197AE549004E819E /* Recorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recorder.swift; sourceTree = "<group>"; };
+		AF9081B319805B980024E026 /* WaveformImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveformImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +84,7 @@
 				340C38B1197ADE16004D9332 /* AppDelegate.swift */,
 				340C38B3197ADE16004D9332 /* ViewController.swift */,
 				34F075B7197AE549004E819E /* Recorder.swift */,
-				34952955197C64E800977882 /* WaveformImageView.swift */,
+				AF9081B319805B980024E026 /* WaveformImageView.swift */,
 				340C38B5197ADE16004D9332 /* Main.storyboard */,
 				340C38B8197ADE16004D9332 /* Images.xcassets */,
 				340C38AF197ADE16004D9332 /* Supporting Files */,
@@ -221,7 +221,7 @@
 				34F075B8197AE549004E819E /* Recorder.swift in Sources */,
 				340C38B4197ADE16004D9332 /* ViewController.swift in Sources */,
 				340C38B2197ADE16004D9332 /* AppDelegate.swift in Sources */,
-				34952956197C64E800977882 /* WaveformImageView.swift in Sources */,
+				AF9081B419805B980024E026 /* WaveformImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

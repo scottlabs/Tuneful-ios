@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         let filePath = NSBundle.mainBundle().pathForResource(nil, ofType: "mp3", inDirectory: nil)
         let url = NSURL.fileURLWithPath(filePath)
         
-        let waveformImageView = WaveformImageView()
+        let waveformImageView = WaveformImageView(url: url)
         
         imageView.image = waveformImageView.image;
 
