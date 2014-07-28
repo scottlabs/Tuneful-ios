@@ -13,7 +13,11 @@ import AVFoundation
 
 class ViewController: UIViewController {
     
-    let recorder = Recorder()
+    var recorder = Recorder()
+    
+    @IBOutlet var PlayButton : UIButton
+    @IBOutlet var StopButton : UIButton
+    @IBOutlet var RecordButton : UIButton
     
 //    @IBOutlet var imageView: UIImageView
     @IBOutlet var imageView: UIImageView
@@ -23,23 +27,35 @@ class ViewController: UIViewController {
         let filePath = NSBundle.mainBundle().pathForResource(nil, ofType: "mp3", inDirectory: nil)
         let url = NSURL.fileURLWithPath(filePath)
         
-        let waveformImageView = WaveformImageView(url: url)
+//        let waveformImageView = WaveformImageView(url: url)
         
-        imageView.image = waveformImageView.image;
+//        imageView.image   = waveformImageView.image;
 
         
         
 
-
         
+        PlayButton.enabled = false
+        StopButton.enabled = false
         
     }
     
     @IBAction func recordMe(sender: AnyObject) {
-
         self.recorder.record()
-        
-        
+        StopButton.enabled = true
+        RecordButton.enabled = false
+    }
+    
+    @IBAction func playMe(sender: AnyObject) {
+        self.recorder.play()
+        StopButton.enabled = false
+        RecordButton.enabled = false
+    }
+    
+    @IBAction func stopMe(sender: AnyObject) {
+        self.recorder.stop()
+        StopButton.enabled = false
+        PlayButton.enabled = true
     }
     
 

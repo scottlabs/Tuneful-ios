@@ -6,35 +6,19 @@
 //  Copyright (c) 2014 Kevin Scott. All rights reserved.
 //
 
+
+/*
 import Foundation
 import CoreMedia
 import AVFoundation
 import UIKit
 
-/*
-#define absX(x) (x<0?0-x:x)
-#define minMaxX(x,mn,mx) (x<=mn?mn:(x>=mx?mx:x))
-#define noiseFloor (-50.0)
-#define decibel(amplitude) (20.0 * log10(absX(amplitude)/32767.0))
-#define imgExt @"png"
-#define imageToData(x) UIImagePNGRepresentation(x)
-*/
-
-let noiseFloor = -50.0
-
-struct TrackInfo {
-    let sampleRate : Double
-    let channels : Int
-}
-
-struct AudioImageData {
-    let normalizeMax : Double
-    let data : NSMutableData
-}
 
 class WaveformImageView {
     
     let image : UIImage = UIImage()
+    
+    let noiseFloor = -50.0
     
     let outputSettingsDict = [
         "AVFormatIDKey": kAudioFormatLinearPCM,
@@ -43,6 +27,16 @@ class WaveformImageView {
         "AVLinearPCMIsFloatKey": false,
         "AVLinearPCMIsNonInterleaved": false
     ]
+    
+    struct TrackInfo {
+        let sampleRate : Double
+        let channels : Int
+    }
+    
+    struct AudioImageData {
+        let normalizeMax : Double
+        let data : NSMutableData
+    }
     
     init(url: NSURL) {
         let urlA = AVURLAsset.URLAssetWithURL(url, options: nil)
@@ -64,10 +58,10 @@ class WaveformImageView {
             }
             
             if (fmtDesc) {
+                println("channels: \(fmtDesc.mChannelsPerFrame), bytes/packet: \(fmtDesc.mBytesPerPacket), sampleRate: \(fmtDesc.mSampleRate)")
                 return TrackInfo(sampleRate: Double(fmtDesc.mSampleRate), channels: Int(fmtDesc.mChannelsPerFrame))
 
-                
-                //                NSLog(;@"channels:%u, bytes/packet: %u, sampleRate %f",channelCount, fmtDesc.mBytesPerPacket,sampleRate);
+
             }
             
         }
@@ -89,11 +83,10 @@ class WaveformImageView {
         
         var totalBytes = 0;
         var normalizeMax = noiseFloor;
-        var totalLeft : Double = 0;
-        var totalRight : Double = 0;
-        var sampleTally : Double = 0;
+        var totalLeft : Float32 = 0;
+        var totalRight : Float32 = 0;
+        var sampleTally : Int = 0;
         
-
         
         
         while (reader.status == AVAssetReaderStatus.Reading){
@@ -123,7 +116,7 @@ class WaveformImageView {
                 let sampleCount = length / bytesPerSample;
                 
                 
-                func absX(x : Double) -> Double {
+                func absX(x : Float32) -> Float32 {
                     if x < 0 {
                         return 0 - x
                     } else {
@@ -132,13 +125,13 @@ class WaveformImageView {
                     
                 }
                 
-                func decibel(amplitude : Double) -> Double {
-                    let tempAmp : Double = absX(amplitude)/32767.0
+                func decibel(amplitude : Float32) -> Float32 {
+                    let tempAmp : Float32 = absX(amplitude)/32767.0
                     let tempLog = log10(tempAmp)
                     return (20.0 * tempLog)
                 }
                 
-                func minMaxX (x : Double ,mn : Double ,mx : Double) -> Double {
+                func minMaxX (x : Float32 ,mn : Float32 ,mx : Float32) -> Float32 {
                     if ( x <= mn ) {
                         return mn
                     } else if x>=mx {
@@ -148,40 +141,39 @@ class WaveformImageView {
                     }
                 }
                 
-                let noiseFloor = -50.0
+
                 
                 for (var i = 0; i < sampleCount; i++) {
-                    var left = Double(samples[Int(i)]);
+                    var left : Float32 = Float32(samples[Int(i)]);
                     left = decibel(left);
-                    left = minMaxX(left,Double(noiseFloor),0);
+                    left = minMaxX(left,Float32(noiseFloor),0);
                     
-                    totalLeft += Double(left);
+                    totalLeft += Float32(left);
                     
                     
-                    
-                    var right : Double = 0;
+                    var right : Float32 = 0;
                     if (trackInfo.channels==2) {
-                        right = Double(samples[Int(i++)]);
+                        right = Float32(samples[Int(i++)]);
                         right = decibel(right);
-                        right = minMaxX(right,Double(noiseFloor),0);
+                        right = minMaxX(right,Float32(noiseFloor),0);
                         
                         totalRight += right;
                     }
                     
                     sampleTally++;
                     
-                    if (sampleTally > samplesPerPixel) {
+                    if (UInt(sampleTally) > UInt(samplesPerPixel)) {
                         
-                        left = totalLeft / sampleTally;
-                        if (left > normalizeMax) {
-                            normalizeMax = left;
+                        left = totalLeft / Float32(sampleTally);
+                        if (left > Float32(normalizeMax)) {
+                            normalizeMax = Double(left);
                         }
                         //                    NSLog(@"left average = %f, normalizeMax = %f",left,normalizeMax);
                         
-                        fullSongData.appendBytes(bytes : left, length: sizeof(left))
+                        fullSongData.appendBytes(bytes : left, length: 32)
                         
                         if (trackInfo.channels==2) {
-                            right = totalRight / sampleTally;
+                            right = totalRight / Float32(sampleTally);
                             
                             if (right > normalizeMax) {
                                 normalizeMax = right;
@@ -310,3 +302,4 @@ class WaveformImageView {
     }
     
 }
+*/

@@ -10,50 +10,58 @@ import Foundation
 import AVFoundation
 
 class Recorder : NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
-    let audioSession = AVAudioSession.sharedInstance()
-    let homePath = NSHomeDirectory().stringByAppendingPathComponent("Documents")
+//    let audioSession = AVAudioSession.sharedInstance()
+//    let homePath = NSHomeDirectory().stringByAppendingPathComponent("Documents")
 
+    var recorder: AVAudioRecorder?
+    var player: AVAudioPlayer?
+    
     
     init() {
         super.init()
-        if (self.audioSession.respondsToSelector("requestRecordPermission:")) {
-            self.audioSession.requestRecordPermission({(granted: Bool)-> Void in
-                if granted {
-                    
-                    var err : NSError? = nil
-                    self.audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, error: &err)
-                    
-                    if (err) {
-                        println("There was an error setting the category")
-                        return
-                    }
-                    
-                    self.audioSession.setActive(true, error: &err)
-                    if (err) {
-                        println("There was an error setting the active")
-                        return
-                    }
+        recorder = nil
+        player = nil
+        
+        var pathComponents: AnyObject[] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        
+        pathComponents.append("\(NSDate().description).m4a")
+        var outputFileURL = NSURL.fileURLWithPathComponents(pathComponents)
+        
+        var session = AVAudioSession.sharedInstance()
+        session.setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
 
-                } else {
-                   println("not granted")
-                }
-            })
-        }
+        var recordSetting = NSMutableDictionary()
+        recordSetting.setValue(kAudioFormatMPEG4AAC, forKey: AVFormatIDKey)
+        recordSetting.setValue(44100.0, forKey: AVSampleRateKey)
+        recordSetting.setValue(2, forKey: AVNumberOfChannelsKey)
+        
+        recorder = AVAudioRecorder(URL: outputFileURL, settings: recordSetting, error: nil)
+        recorder!.delegate = self
+        recorder!.meteringEnabled = true
+        recorder!.prepareToRecord()
+        
     }
     
     func play() {
+        
+        if !recorder!.recording {
+            player = AVAudioPlayer(contentsOfURL: recorder!.url, error: nil)
+            player!.delegate = self
+            player!.play()
+        }
+    
+        /*
         let path = NSBundle.mainBundle().pathForResource(nil, ofType: "mp3")
         let url = NSURL.fileURLWithPath(path)
         var err : NSError? = nil
 
         let fileData = NSData(contentsOfURL: url)
         err = nil
-
+        
+        println(url);
         
         let audioPlayer = AVAudioPlayer(data: fileData, error: &err)
         audioPlayer.prepareToPlay()
-        
-        
         
         if (err) {
             println(err.description)
@@ -62,7 +70,9 @@ class Recorder : NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
         audioPlayer.delegate = self
         
         audioPlayer.play()
-        println(audioPlayer.playing)
+        println("playing: \(audioPlayer.playing)")
+        
+        */
     }
     
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer!, successfully flag: Bool)  {
@@ -77,12 +87,25 @@ class Recorder : NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     }
     
     func record() {
-        play()
-        return
 
         var err : NSError? = nil
         
         
+        if player != nil && player!.playing {
+            player!.stop()
+        }
+        if !recorder!.recording {
+            var session = AVAudioSession.sharedInstance()
+            session.setActive(true, error: nil)
+            recorder!.record()
+//            RecordButton.setTitle("Pause", forState: UIControlState.Normal)
+        } else {
+            recorder!.pause()
+//            RecordButton.setTitle("Record", forState: UIControlState.Normal)
+        }
+        
+        
+        /*
         if (self.audioSession.respondsToSelector("requestRecordPermission:")) {
             self.audioSession.requestRecordPermission({(granted: Bool)-> Void in
                 if granted {
@@ -100,7 +123,8 @@ class Recorder : NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
                     
                     let now = NSDate().description
                     
-                    let url = NSURL.fileURLWithPath(path+"/"+now+".aac")
+                    let url = NSURL.fileURLWithPath(path+"/"+now+".m4a")
+                    println(url)
                     err = nil
                     let recorder = AVAudioRecorder(URL: url, settings: settings, error: &err)
                     if (err) {
@@ -116,7 +140,7 @@ class Recorder : NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
                         return
                     }
                     
-                    let interval = NSTimeInterval(3)
+                    let interval = NSTimeInterval(10)
                     
                     recorder.recordForDuration(interval)
                     
@@ -126,8 +150,14 @@ class Recorder : NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
             })
             
         }
-        
+        */
 
+    }
+    
+    func stop() {
+        recorder!.stop()
+        var audioSession = AVAudioSession.sharedInstance()
+        audioSession.setActive(false, error: nil)
     }
     
     func audioRecorderBeginInterruption(recorder: AVAudioRecorder!) {
