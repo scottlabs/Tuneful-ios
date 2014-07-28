@@ -21,6 +21,7 @@ class Recorder {
     }
     
     func prepareToRecord() {
+        println("prepare to record")
         var pathComponents: [AnyObject] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
         
         pathComponents.append("\(NSDate().description).m4a")
