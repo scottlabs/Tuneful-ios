@@ -17,9 +17,10 @@ import UIKit
 import Foundation
 import AVFoundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, AVAudioRecorderDelegate {
     
     var recorder = Recorder()
+
     
     @IBOutlet var PlayButton : UIButton
     @IBOutlet var StopButton : UIButton
@@ -33,27 +34,44 @@ class ViewController: UIViewController {
         let filePath = NSBundle.mainBundle().pathForResource(nil, ofType: "mp3", inDirectory: nil)
         let url = NSURL.fileURLWithPath(filePath)
         
+        
 //        let waveformImageView = WaveformImageView(url: url)
         
 //        imageView.image   = waveformImageView.image;
 
         
-        
+        recorder.delegate = self
 
         
         PlayButton.enabled = false
         StopButton.enabled = false
-        
+
     }
     
+    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
+//        println("success from the view controller! \(recorder) \(self.recorder)")
+        let url = self.recorder.outputFileURL
+        println("successfully recorded \(url)")
+
+    }
+    func audioRecorderBeginInterruption(recorder: AVAudioRecorder!) {
+        println("begin interruption")
+    }
+    
+    
+    func audioRecorderEncodeErrorDidOccur(recorder: AVAudioRecorder!, error: NSError!)  {
+        println("error")
+    }
+    
+    
     @IBAction func recordMe(sender: AnyObject) {
+        
         self.recorder.record()
         StopButton.enabled = true
         RecordButton.enabled = false
     }
     
     @IBAction func playMe(sender: AnyObject) {
-        self.recorder.play()
         StopButton.enabled = false
         RecordButton.enabled = false
     }
