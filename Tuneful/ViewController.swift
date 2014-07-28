@@ -7,6 +7,12 @@
 //
 
 
+// This View Controller should have recording controls (record, which becomes stop) and a table view.
+// There is a persistent record class that handles recording and has a callback on stop.
+// The callback on stop creates a new Audio class that takes the url as the input, renders it into the table, and plays it.
+
+
+
 import UIKit
 import Foundation
 import AVFoundation

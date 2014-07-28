@@ -22,14 +22,19 @@ class Recorder : NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
         recorder = nil
         player = nil
         
-        var pathComponents: AnyObject[] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        prepareToRecord()
+        
+    }
+    
+    func prepareToRecord() {
+        var pathComponents: [AnyObject] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
         
         pathComponents.append("\(NSDate().description).m4a")
         var outputFileURL = NSURL.fileURLWithPathComponents(pathComponents)
         
         var session = AVAudioSession.sharedInstance()
         session.setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
-
+        
         var recordSetting = NSMutableDictionary()
         recordSetting.setValue(kAudioFormatMPEG4AAC, forKey: AVFormatIDKey)
         recordSetting.setValue(44100.0, forKey: AVSampleRateKey)
@@ -39,7 +44,6 @@ class Recorder : NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
         recorder!.delegate = self
         recorder!.meteringEnabled = true
         recorder!.prepareToRecord()
-        
     }
     
     func play() {
@@ -87,6 +91,7 @@ class Recorder : NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     }
     
     func record() {
+//        prepareToRecord()
 
         var err : NSError? = nil
         
