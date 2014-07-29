@@ -33,7 +33,6 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
 
     
     
-    @IBOutlet var StopButton : UIButton!
     @IBOutlet var RecordButton : UIButton!
     
 //    @IBOutlet var imageView: UIImageView
@@ -52,8 +51,6 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
         self.recorder = Recorder()
         self.recorder.delegate = self
 
-        
-        StopButton.enabled = false
         
         
         
@@ -87,18 +84,17 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
     
     
     @IBAction func recordMe(sender: AnyObject) {
-        
-        self.recorder.record()
-        StopButton.enabled = true
-        RecordButton.enabled = false
+        if (self.recorder.recorder?.recording) {
+            self.recorder.stop()
+            RecordButton.titleLabel.text = "Record"
+        } else {
+            self.recorder.record()
+            RecordButton.titleLabel.text = "Stop"
+        }
+
     }
     
-    
-    @IBAction func stopMe(sender: AnyObject) {
-        self.recorder.stop()
-        StopButton.enabled = false
-        RecordButton.enabled = true
-    }
+
     
 
     override func didReceiveMemoryWarning() {

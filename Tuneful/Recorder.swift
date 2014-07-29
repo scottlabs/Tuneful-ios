@@ -14,6 +14,7 @@ class Recorder {
     var recorder: AVAudioRecorder?
     var outputFileURL : NSURL?
     var delegate: AVAudioRecorderDelegate?
+    var recording = false
     
     init() {
         recorder = nil

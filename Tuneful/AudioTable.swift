@@ -9,24 +9,24 @@
 import Foundation
 import UIKit
 
-class AudioTable : UITableViewController, UITableViewDelegate, UITableViewDataSource {
+class AudioTable : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var items : Array<NSURL> = []    
-//    @IBOutlet var tableView: UITableView!
+    var tableView: UITableView = UITableView()
+//    var tableView = UITableView()
     
     override func viewDidLoad() {
-        
-        self.tableView!.delegate = self
-        self.tableView!.dataSource = self
-        self.tableView!.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
-    override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int
+    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int
     {
         return self.items.count
     }
     
-    override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!
+    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!
     {
         let cell = tableView .dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         cell.textLabel.text = String(format: "%i", indexPath.row+1)
@@ -37,12 +37,12 @@ class AudioTable : UITableViewController, UITableViewDelegate, UITableViewDataSo
         return cell
     }
     
-    override func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool
+    func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool
     {
         return true
     }
     
-    override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!)
+    func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!)
     {
         //        self.items.removeObjectAtIndex(indexPath.row)
         
@@ -51,23 +51,23 @@ class AudioTable : UITableViewController, UITableViewDelegate, UITableViewDataSo
         
     }
     
-    override func tableView(tableView: UITableView!, editingStyleForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCellEditingStyle
+    func tableView(tableView: UITableView!, editingStyleForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCellEditingStyle
     {
         return (UITableViewCellEditingStyle.Delete)
     }
     
-    override func tableView(tableView: UITableView!, canMoveRowAtIndexPath indexPath: NSIndexPath!) -> Bool
+    func tableView(tableView: UITableView!, canMoveRowAtIndexPath indexPath: NSIndexPath!) -> Bool
     {
         return true
     }
     
-    override func tableView(tableView: UITableView!, moveRowAtIndexPath sourceIndexPath: NSIndexPath!, toIndexPath destinationIndexPath: NSIndexPath!)
+    func tableView(tableView: UITableView!, moveRowAtIndexPath sourceIndexPath: NSIndexPath!, toIndexPath destinationIndexPath: NSIndexPath!)
     {
         //        self.tableView?.moveRowAtIndexPath(sourceIndexPath, toIndexPath: destinationIndexPath)
         //        self.items.exchangeObjectAtIndex(sourceIndexPath.row, withObjectAtIndex: destinationIndexPath.row)
     }
     
-    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
+    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
     {
         println("row = %d",indexPath.row)
         var err : NSError? = nil
