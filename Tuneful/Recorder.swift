@@ -9,11 +9,13 @@
 import Foundation
 import AVFoundation
 
-class Recorder {
+class Recorder : NSObject {
 
     var recorder: AVAudioRecorder?
     var outputFileURL : NSURL?
     var delegate: AVAudioRecorderDelegate!
+    var timer : NSTimer?
+
     
     init() {
         recorder = nil
@@ -62,14 +64,30 @@ class Recorder {
             var session = AVAudioSession.sharedInstance()
             session.setActive(true, error: nil)
             recorder!.record()
+            let aSelector : Selector = "audioLevels"
+
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: aSelector, userInfo: nil, repeats: true)
+
+//            NSTimer.scheduledTimerWithTimeInterval(0.01, invocation: self, repeats: true)
         } else {
+
            
 //            recorder.pause()
             stop()
         }
     }
+    func audioLevels() {
+//        println("audio levels")
+        recorder!.updateMeters()
+        let averagePower = recorder!.averagePowerForChannel(0)
+        
+        println("Average input: \(averagePower)")
+
+    }
     
     func stop() {
+        timer?.invalidate()
+        timer = nil
             println("stop recording")         
         recorder!.stop()
         var audioSession = AVAudioSession.sharedInstance()
