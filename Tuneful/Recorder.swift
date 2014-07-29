@@ -8,6 +8,7 @@
 
 import Foundation
 import AVFoundation
+import UIKit
 
 class Recorder : NSObject {
 
@@ -15,10 +16,13 @@ class Recorder : NSObject {
     var outputFileURL : NSURL?
     var delegate: AVAudioRecorderDelegate!
     var timer : NSTimer?
+    var lineView : UIView?
+    var lineViewWidth : CGFloat?
 
     
     init() {
         recorder = nil
+        
     }
     
     func prepareToRecord() {
@@ -79,9 +83,16 @@ class Recorder : NSObject {
     func audioLevels() {
 //        println("audio levels")
         recorder!.updateMeters()
-        let averagePower = recorder!.averagePowerForChannel(0)
+        var averagePower = Double(recorder!.averagePowerForChannel(0))
+        
+        averagePower += 50.0
+        averagePower /= 100
+        
         
         println("Average input: \(averagePower)")
+        averagePower *= Double(lineViewWidth!)
+        
+
 
     }
     

@@ -17,6 +17,7 @@ import UIKit
 import Foundation
 import AVFoundation
 
+
 class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
     var recorder : Recorder!
@@ -54,6 +55,11 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
         self.recorder.delegate = self
 
         
+
+//        CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 0.5);
+//        CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 0.5);
+//        CGContextFillRect(context, rect)
+        
         
         
 //        contentView.backgroundColor = UIColor.redColor()
@@ -61,8 +67,16 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
         audioTable.tableView.frame = contentView.frame
         contentView.addSubview(audioTable.tableView)
         
+        recorder.lineView = UIView(frame: CGRect(x: 0,y: 0, width: self.view.frame.width, height: 4))
+        recorder.lineViewWidth = self.view.frame.width
+        recorder.lineView!.backgroundColor = UIColor.blackColor()
+
+        view.addSubview(recorder.lineView!)
+        
 
     }
+    
+    
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
 //        println("success from the view controller! \(recorder.url) \(self.recorder.outputFileURL)")
