@@ -39,7 +39,9 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
     @IBOutlet var imageView: UIImageView?
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
         let filePath = NSBundle.mainBundle().pathForResource(nil, ofType: "mp3", inDirectory: nil)
         let url = NSURL.fileURLWithPath(filePath)
         
@@ -67,10 +69,8 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
 
 //        println("successfully recorded \(recordingURL)")
         
-        audioTable.items.append(self.recorder.outputFileURL!)
-        var row = audioTable.items.count-1
-        var indexPath = NSIndexPath(forRow:row,inSection:0)
-//        audioTable.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
+        audioTable.add(self.recorder.outputFileURL!)
+        
 
     }
     func audioRecorderBeginInterruption(recorder: AVAudioRecorder!) {
@@ -84,12 +84,12 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
     
     
     @IBAction func recordMe(sender: AnyObject) {
-        if (self.recorder.recorder?.recording) {
+        if (self.recorder.recorder? && self.recorder.recorder!.recording) { // ugly as shit
             self.recorder.stop()
-            RecordButton.titleLabel.text = "Record"
+            RecordButton.setTitle("Record", forState: .Normal)
         } else {
             self.recorder.record()
-            RecordButton.titleLabel.text = "Stop"
+            RecordButton.setTitle("Stop", forState: .Normal)
         }
 
     }

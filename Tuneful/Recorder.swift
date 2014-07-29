@@ -13,16 +13,14 @@ class Recorder {
 
     var recorder: AVAudioRecorder?
     var outputFileURL : NSURL?
-    var delegate: AVAudioRecorderDelegate?
-    var recording = false
+    var delegate: AVAudioRecorderDelegate!
     
     init() {
         recorder = nil
-        
     }
     
     func prepareToRecord() {
-        println("prepare to record")
+//        println("prepare to record")
         var pathComponents: [AnyObject] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
         
         pathComponents.append("\(NSDate().description).m4a")
@@ -60,17 +58,19 @@ class Recorder {
         var err : NSError? = nil
         
         if !recorder!.recording {
+            println("begin recording")
             var session = AVAudioSession.sharedInstance()
             session.setActive(true, error: nil)
             recorder!.record()
         } else {
-            recorder!.pause()
+           
+//            recorder.pause()
+            stop()
         }
-        
-        
     }
     
     func stop() {
+            println("stop recording")         
         recorder!.stop()
         var audioSession = AVAudioSession.sharedInstance()
         audioSession.setActive(false, error: nil)
