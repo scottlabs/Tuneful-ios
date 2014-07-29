@@ -25,17 +25,16 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
     var recordingURL : NSURL?
 
     
-    @IBOutlet var tableView: UITableView
+    @IBOutlet var tableView: UITableView?
     var items : Array<NSURL> = []
 
     
     
-    @IBOutlet var PlayButton : UIButton
-    @IBOutlet var StopButton : UIButton
-    @IBOutlet var RecordButton : UIButton
+    @IBOutlet var StopButton : UIButton!
+    @IBOutlet var RecordButton : UIButton!
     
 //    @IBOutlet var imageView: UIImageView
-    @IBOutlet var imageView: UIImageView
+    @IBOutlet var imageView: UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
