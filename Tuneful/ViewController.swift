@@ -99,7 +99,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
     
     
     @IBAction func recordMe(sender: AnyObject) {
-        if (self.recorder.recorder? && self.recorder.recorder!.recording) { // ugly as shit
+        if (self.recorder.recorder? != nil && self.recorder.recorder!.recording) { // ugly as shit
             self.recorder.stop()
             RecordButton.setTitle("Record", forState: .Normal)
         } else {

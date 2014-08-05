@@ -16,7 +16,11 @@ class AudioTable : UIViewController, UITableViewDelegate, UITableViewDataSource 
     let cellHeight : CGFloat = 44
 //    var tableView = UITableView()
     
-    init() {
+    required init(coder: NSCoder) {
+        fatalError("NSCoding not supported")
+    }
+    
+    override init() {
         super.init(nibName: nil, bundle: nil)
         items = []
         self.tableView.delegate = self

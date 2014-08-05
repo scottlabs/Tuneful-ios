@@ -21,7 +21,7 @@ class Recorder : NSObject {
     var audioLevels : [Double] = []
 
     
-    init() {
+    override init() {
         recorder = nil
         
     }
