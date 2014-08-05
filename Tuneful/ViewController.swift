@@ -24,6 +24,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
     var player: AVAudioPlayer!
     
     let audioTable = AudioTable()
+//    let testView = TestView()
 
 //    var recordingURL : NSURL?
 
@@ -54,15 +55,15 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
         self.recorder = Recorder()
         self.recorder.delegate = self
 
-        
 
 //        CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 0.5);
 //        CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 0.5);
 //        CGContextFillRect(context, rect)
         
-        
+//        contentView = testView;
         
 //        contentView.backgroundColor = UIColor.redColor()
+        
         
         audioTable.tableView.frame = contentView.frame
         contentView.addSubview(audioTable.tableView)
@@ -82,8 +83,8 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
 //        println("success from the view controller! \(recorder.url) \(self.recorder.outputFileURL)")
 
 //        println("successfully recorded \(recordingURL)")
-        
-        audioTable.add(self.recorder.outputFileURL!)
+        let audio = Audio(url: self.recorder.outputFileURL!, audioLevels: self.recorder.audioLevels)
+        audioTable.add(audio)
         
 
     }

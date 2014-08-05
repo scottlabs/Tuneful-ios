@@ -18,6 +18,7 @@ class Recorder : NSObject {
     var timer : NSTimer?
     var lineView : UIView?
     var lineViewWidth : CGFloat?
+    var audioLevels : [Double] = []
 
     
     init() {
@@ -44,6 +45,8 @@ class Recorder : NSObject {
         recorder!.delegate = delegate
         recorder!.meteringEnabled = true
         recorder!.prepareToRecord()
+        
+        audioLevels = []
     }
 /*
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer!, successfully flag: Bool)  {
@@ -68,9 +71,9 @@ class Recorder : NSObject {
             var session = AVAudioSession.sharedInstance()
             session.setActive(true, error: nil)
             recorder!.record()
-            let aSelector : Selector = "audioLevels"
+            let aSelector : Selector = "measureAudioLevels"
 
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: aSelector, userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: aSelector, userInfo: nil, repeats: true)
 
 //            NSTimer.scheduledTimerWithTimeInterval(0.01, invocation: self, repeats: true)
         } else {
@@ -80,17 +83,19 @@ class Recorder : NSObject {
             stop()
         }
     }
-    func audioLevels() {
+    func measureAudioLevels() {
 //        println("audio levels")
         recorder!.updateMeters()
         var averagePower = Double(recorder!.averagePowerForChannel(0))
         
+        // TODO: These will need to be calibrated
         averagePower += 50.0
         averagePower /= 100
         
+        audioLevels.append(averagePower)
         
-        println("Average input: \(averagePower)")
-        averagePower *= Double(lineViewWidth!)
+        println("Average input: \(audioLevels)")
+//        averagePower *= Double(lineViewWidth!)
         
 
 
@@ -99,7 +104,7 @@ class Recorder : NSObject {
     func stop() {
         timer?.invalidate()
         timer = nil
-            println("stop recording")         
+//            println("stop recording")         
         recorder!.stop()
         var audioSession = AVAudioSession.sharedInstance()
         audioSession.setActive(false, error: nil)

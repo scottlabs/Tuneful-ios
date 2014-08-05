@@ -11,8 +11,9 @@ import UIKit
 
 class AudioTable : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var items : [String] = []
+    var items : [Audio] = []
     var tableView: UITableView = UITableView()
+    let cellHeight : CGFloat = 44
 //    var tableView = UITableView()
     
     init() {
@@ -44,11 +45,19 @@ class AudioTable : UIViewController, UITableViewDelegate, UITableViewDataSource 
         
         let index = indexPath.row
 //        println("table view, or return a cell")
-        cell.textLabel.text = self.items[index]
+        let audioView = self.items[index].image
+        cell.textLabel.text = "something"
+        cell.addSubview(audioView)
+//        cell.textLabel.text =
 //        cell.textLabel.text = "hi"
 //        println(self.items)
         return cell
     }
+    
+//    func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+//        return cellHeight;
+//    }
+    
 //    
 //    func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool
 //    {
@@ -91,9 +100,11 @@ class AudioTable : UIViewController, UITableViewDelegate, UITableViewDataSource 
         
     }
 
-    func add(item: NSURL) {
+    func add(item: Audio) {
 //        println("add")
-        self.items.append(item.description)
+//        let test = CGRect(x: 0,y: 0, width: self.view.frame.width, height: cellHeight)
+        item.setFrame(CGRect(x: 0,y: 0, width: self.view.frame.width, height: cellHeight))
+        self.items.append(item)
         var row = self.items.count-1
         var indexPath = NSIndexPath(forRow:row,inSection:0)
 
