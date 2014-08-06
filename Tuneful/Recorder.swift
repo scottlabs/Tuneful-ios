@@ -73,7 +73,7 @@ class Recorder : NSObject {
             recorder!.record()
             let aSelector : Selector = "measureAudioLevels"
 
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: aSelector, userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: aSelector, userInfo: nil, repeats: true)
 
 //            NSTimer.scheduledTimerWithTimeInterval(0.01, invocation: self, repeats: true)
         } else {
@@ -86,15 +86,17 @@ class Recorder : NSObject {
     func measureAudioLevels() {
 //        println("audio levels")
         recorder!.updateMeters()
-        var averagePower = Double(recorder!.averagePowerForChannel(0))
+//        recorder!.peakPowerForChannel(<#channelNumber: Int#>)
+//        var averagePower = Double(recorder!.averagePowerForChannel(0))
+        var power = Double(recorder!.averagePowerForChannel(0))
         
         // TODO: These will need to be calibrated
-        averagePower += 50.0
-        averagePower /= 100
+//        power += 50.0
+        power /= 100
         
-        audioLevels.append(averagePower)
+        audioLevels.append(power)
         
-        println("Average input: \(audioLevels)")
+//        println("Average input: \(audioLevels)")
 //        averagePower *= Double(lineViewWidth!)
         
 

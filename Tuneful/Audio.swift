@@ -17,7 +17,7 @@ class Audio {
     init(url : NSURL, audioLevels : Array<Double> ) {
         self.url = url
         self.audioLevels = audioLevels
-        renderImage()
+//        renderImage()
     }
     
     func description() -> String {
@@ -25,12 +25,15 @@ class Audio {
     }
     
     func setFrame(frame : CGRect) {
-        self.frame = frame
+
+        self.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width, height: frame.height)
         renderImage()
     }
     
     func renderImage() {
-        image = AudioView(frame: frame, audioLevels: self.audioLevels)
+        image = UIView()
+        let audioView = AudioView(frame: frame, audioLevels: self.audioLevels)
+        image.addSubview(audioView)
     }
         
 }
