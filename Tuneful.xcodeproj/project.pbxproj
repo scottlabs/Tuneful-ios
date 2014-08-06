@@ -31,6 +31,9 @@
 		AF52FE241992D2FB007221A3 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = AF52FE171992D2FB007221A3 /* TPCircularBuffer.c */; };
 		AF52FE271992D480007221A3 /* EZAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = AF52FE261992D480007221A3 /* EZAudio.m */; };
 		AF52FE2A1992D4DA007221A3 /* EZPlot.m in Sources */ = {isa = PBXBuildFile; fileRef = AF52FE291992D4DA007221A3 /* EZPlot.m */; };
+		AF52FE2C1992D51B007221A3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF52FE2B1992D51B007221A3 /* AVFoundation.framework */; };
+		AF52FE2E1992D51F007221A3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF52FE2D1992D51F007221A3 /* AudioToolbox.framework */; };
+		AF52FE301992D524007221A3 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF52FE2F1992D524007221A3 /* GLKit.framework */; };
 		AF9081B419805B980024E026 /* WaveformImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9081B319805B980024E026 /* WaveformImageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +89,10 @@
 		AF52FE261992D480007221A3 /* EZAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZAudio.m; sourceTree = "<group>"; };
 		AF52FE281992D4DA007221A3 /* EZPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZPlot.h; path = "../../../../EZAudio-master/EZAudio/EZPlot.h"; sourceTree = "<group>"; };
 		AF52FE291992D4DA007221A3 /* EZPlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZPlot.m; path = "../../../../EZAudio-master/EZAudio/EZPlot.m"; sourceTree = "<group>"; };
+		AF52FE2B1992D51B007221A3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		AF52FE2D1992D51F007221A3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		AF52FE2F1992D524007221A3 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		AF52FE311992D5F7007221A3 /* Tuneful-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tuneful-Prefix.pch"; sourceTree = "<group>"; };
 		AF9081B319805B980024E026 /* WaveformImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveformImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +101,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF52FE301992D524007221A3 /* GLKit.framework in Frameworks */,
+				AF52FE2E1992D51F007221A3 /* AudioToolbox.framework in Frameworks */,
+				AF52FE2C1992D51B007221A3 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +120,9 @@
 		340C38A3197ADE16004D9332 = {
 			isa = PBXGroup;
 			children = (
+				AF52FE2F1992D524007221A3 /* GLKit.framework */,
+				AF52FE2D1992D51F007221A3 /* AudioToolbox.framework */,
+				AF52FE2B1992D51B007221A3 /* AVFoundation.framework */,
 				AF52FE021992D2FB007221A3 /* EZAudio */,
 				AF4EBDC91992CDE400C56EBC /* Extensions */,
 				340C38AE197ADE16004D9332 /* Tuneful */,
@@ -183,6 +196,7 @@
 		AF52FE021992D2FB007221A3 /* EZAudio */ = {
 			isa = PBXGroup;
 			children = (
+				AF52FE311992D5F7007221A3 /* Tuneful-Prefix.pch */,
 				AF52FE281992D4DA007221A3 /* EZPlot.h */,
 				AF52FE291992D4DA007221A3 /* EZPlot.m */,
 				AF52FE251992D480007221A3 /* EZAudio.h */,
@@ -458,6 +472,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
+				GCC_PREFIX_HEADER = "Tuneful/EZAudio/Tuneful-Prefix.pch";
 				INFOPLIST_FILE = Tuneful/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -473,6 +488,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
+				GCC_PREFIX_HEADER = "Tuneful/EZAudio/Tuneful-Prefix.pch";
 				INFOPLIST_FILE = Tuneful/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
