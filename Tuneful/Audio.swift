@@ -14,10 +14,38 @@ class Audio {
     let audioLevels : Array<Double>
     var image : UIView = UIView()
     var frame : CGRect = CGRect(x: 0,y: 0, width: 50, height: 50)
+    
+    var audioFile = EZAudioFile()
+    var audioPlot = EZAudioPlot()
+    
+    
     init(url : NSURL, audioLevels : Array<Double> ) {
         self.url = url
         self.audioLevels = audioLevels
 //        renderImage()
+        
+        self.audioPlot.backgroundColor = UIColor.blackColor()
+        // Waveform color
+        self.audioPlot.color           = UIColor.redColor()
+        // Plot type
+        self.audioPlot.plotType        = EZPlotType.Buffer
+        // Fill
+        self.audioPlot.shouldFill      = true;
+        // Mirror
+        self.audioPlot.shouldMirror    = true;
+        audioFile = EZAudioFile(URL: url)
+        
+        var completionBlock = { (waveformData: UnsafeMutablePointer<Float>, length: UInt32) -> Void in
+            self.audioPlot.updateBuffer(waveformData, withBufferSize: length)
+        }
+        
+        audioFile.getWaveformDataWithCompletionBlock(completionBlock)
+        
+        
+//        [self.audioFile getWaveformDataWithCompletionBlock:^(float *waveformData, UInt32 length) {
+//            [self.audioPlot updateBuffer:waveformData withBufferSize:length];
+//            }];
+
     }
     
     func description() -> String {
@@ -32,8 +60,8 @@ class Audio {
     
     func renderImage() {
         image = UIView()
-        let audioView = AudioView(frame: frame, audioLevels: self.audioLevels)
-        image.addSubview(audioView)
+//        let audioView = AudioView(frame: frame, audioLevels: self.audioLevels)
+        image.addSubview(audioPlot)
     }
         
 }
