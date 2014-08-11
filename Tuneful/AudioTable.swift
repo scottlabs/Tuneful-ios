@@ -13,7 +13,7 @@ class AudioTable : UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     var items : [Audio] = []
     var tableView: UITableView = UITableView()
-    let cellHeight : CGFloat = 44
+    let cellHeight : CGFloat = 84
 //    var tableView = UITableView()
     
     required init(coder: NSCoder) {
@@ -58,9 +58,9 @@ class AudioTable : UIViewController, UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     
-//    func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-//        return cellHeight;
-//    }
+    func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+        return cellHeight;
+    }
     
 //    
 //    func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool
