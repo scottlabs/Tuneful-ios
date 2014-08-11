@@ -12,11 +12,11 @@ import UIKit
 class Audio {
     let url : NSURL
     let audioLevels : Array<Double>
-    var image : UIView = UIView()
+//    var image : UIView = UIView()
     var frame : CGRect = CGRect(x: 0,y: 0, width: 50, height: 50)
     
     var audioFile = EZAudioFile()
-    var audioPlot = EZAudioPlot()
+    var image = EZAudioPlot()
     
     
     init(url : NSURL, audioLevels : Array<Double> ) {
@@ -24,19 +24,21 @@ class Audio {
         self.audioLevels = audioLevels
 //        renderImage()
         
-        self.audioPlot.backgroundColor = UIColor.blackColor()
+        let bgColor = UIColor(rgba: "#F2DFD3")
+        self.image.backgroundColor = UIColor(rgba: "#F2DFD3")
         // Waveform color
-        self.audioPlot.color           = UIColor.redColor()
+        self.image.color           = UIColor.blackColor()
         // Plot type
-        self.audioPlot.plotType        = EZPlotType.Buffer
+        self.image.plotType        = EZPlotType.Buffer
         // Fill
-        self.audioPlot.shouldFill      = true;
+        self.image.shouldFill      = true;
         // Mirror
-        self.audioPlot.shouldMirror    = true;
+        self.image.shouldMirror    = true;
         audioFile = EZAudioFile(URL: url)
         
         var completionBlock = { (waveformData: UnsafeMutablePointer<Float>, length: UInt32) -> Void in
-            self.audioPlot.updateBuffer(waveformData, withBufferSize: length)
+            self.image.updateBuffer(waveformData, withBufferSize: length)
+//            println(self.audioPlot)
         }
         
         audioFile.getWaveformDataWithCompletionBlock(completionBlock)
@@ -55,13 +57,7 @@ class Audio {
     func setFrame(frame : CGRect) {
 
         self.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width, height: frame.height)
-        renderImage()
+        image.frame = self.frame
+//        renderImage()
     }
-    
-    func renderImage() {
-        image = UIView()
-//        let audioView = AudioView(frame: frame, audioLevels: self.audioLevels)
-        image.addSubview(audioPlot)
-    }
-        
 }
