@@ -26,8 +26,8 @@ class Audio {
         self.url = url
 //        self.audioLevels = audioLevels
         
-        let svgImage = SVGKImage()
-        var svg = SVGKFastImageView(SVGKImage: svgImage)
+//        let svgImage = SVGKImage()
+//        var svg = SVGKFastImageView(SVGKImage: svgImage)
         
 //        renderImage()
         

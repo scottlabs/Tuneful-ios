@@ -33,8 +33,15 @@
 		AF52FE2C1992D51B007221A3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF52FE2B1992D51B007221A3 /* AVFoundation.framework */; };
 		AF52FE2E1992D51F007221A3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF52FE2D1992D51F007221A3 /* AudioToolbox.framework */; };
 		AF52FE301992D524007221A3 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF52FE2F1992D524007221A3 /* GLKit.framework */; };
-		AFA19B12199E626700EC51E5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA19B11199E626700EC51E5 /* Parse.framework */; };
-		AFCAD7F61999231C00CCA3F7 /* libSVGKit-iOS.1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFCAD7751999231C00CCA3F7 /* libSVGKit-iOS.1.2.0.a */; };
+		AFA19B14199E62B900EC51E5 /* AudioLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA19B13199E62B900EC51E5 /* AudioLibrary.swift */; };
+		AFA19B16199E653800EC51E5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA19B15199E653800EC51E5 /* Parse.framework */; };
+		AFA19B18199E655A00EC51E5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA19B17199E655A00EC51E5 /* CFNetwork.framework */; };
+		AFA19B1A199E656400EC51E5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA19B19199E656400EC51E5 /* CoreLocation.framework */; };
+		AFA19B1C199E656F00EC51E5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA19B1B199E656F00EC51E5 /* libz.dylib */; };
+		AFA19B1E199E657C00EC51E5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA19B1D199E657C00EC51E5 /* MobileCoreServices.framework */; };
+		AFA19B20199E658500EC51E5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA19B1F199E658500EC51E5 /* Security.framework */; };
+		AFA19B22199E658C00EC51E5 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA19B21199E658C00EC51E5 /* StoreKit.framework */; };
+		AFA19B24199E659300EC51E5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA19B23199E659300EC51E5 /* SystemConfiguration.framework */; };
 		AFCAD7F81999234F00CCA3F7 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFCAD7F71999234F00CCA3F7 /* CoreText.framework */; };
 		AFCAD7FA1999235500CCA3F7 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFCAD7F91999235500CCA3F7 /* CoreImage.framework */; };
 		AFCAD7FC1999235900CCA3F7 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AFCAD7FB1999235900CCA3F7 /* libxml2.dylib */; };
@@ -98,8 +105,15 @@
 		AF52FE2D1992D51F007221A3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		AF52FE2F1992D524007221A3 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		AF52FE311992D5F7007221A3 /* Tuneful-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tuneful-Prefix.pch"; sourceTree = "<group>"; };
-		AFA19B11199E626700EC51E5 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		AFCAD7751999231C00CCA3F7 /* libSVGKit-iOS.1.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libSVGKit-iOS.1.2.0.a"; sourceTree = "<group>"; };
+		AFA19B13199E62B900EC51E5 /* AudioLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioLibrary.swift; sourceTree = "<group>"; };
+		AFA19B15199E653800EC51E5 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		AFA19B17199E655A00EC51E5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		AFA19B19199E656400EC51E5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		AFA19B1B199E656F00EC51E5 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		AFA19B1D199E657C00EC51E5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		AFA19B1F199E658500EC51E5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		AFA19B21199E658C00EC51E5 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		AFA19B23199E659300EC51E5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		AFCAD7791999231C00CCA3F7 /* AppleSucksDOMImplementation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleSucksDOMImplementation.h; sourceTree = "<group>"; };
 		AFCAD77A1999231C00CCA3F7 /* Attr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attr.h; sourceTree = "<group>"; };
 		AFCAD77B1999231C00CCA3F7 /* BaseClassForAllSVGBasicShapes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseClassForAllSVGBasicShapes.h; sourceTree = "<group>"; };
@@ -238,17 +252,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFCAD8021999236700CCA3F7 /* UIKit.framework in Frameworks */,
-				AFCAD8001999236300CCA3F7 /* CoreGraphics.framework in Frameworks */,
-				AFCAD7FE1999235E00CCA3F7 /* QuartzCore.framework in Frameworks */,
-				AFCAD7FC1999235900CCA3F7 /* libxml2.dylib in Frameworks */,
-				AFCAD7FA1999235500CCA3F7 /* CoreImage.framework in Frameworks */,
-				AFCAD7F81999234F00CCA3F7 /* CoreText.framework in Frameworks */,
-				AFA19B12199E626700EC51E5 /* Parse.framework in Frameworks */,
-				AFCAD7F61999231C00CCA3F7 /* libSVGKit-iOS.1.2.0.a in Frameworks */,
-				AF52FE301992D524007221A3 /* GLKit.framework in Frameworks */,
 				AF52FE2E1992D51F007221A3 /* AudioToolbox.framework in Frameworks */,
 				AF52FE2C1992D51B007221A3 /* AVFoundation.framework in Frameworks */,
+				AFA19B18199E655A00EC51E5 /* CFNetwork.framework in Frameworks */,
+				AFCAD8001999236300CCA3F7 /* CoreGraphics.framework in Frameworks */,
+				AFCAD7FA1999235500CCA3F7 /* CoreImage.framework in Frameworks */,
+				AFA19B1A199E656400EC51E5 /* CoreLocation.framework in Frameworks */,
+				AFCAD7F81999234F00CCA3F7 /* CoreText.framework in Frameworks */,
+				AF52FE301992D524007221A3 /* GLKit.framework in Frameworks */,
+				AFCAD7FC1999235900CCA3F7 /* libxml2.dylib in Frameworks */,
+				AFA19B1C199E656F00EC51E5 /* libz.dylib in Frameworks */,
+				AFA19B1E199E657C00EC51E5 /* MobileCoreServices.framework in Frameworks */,
+				AFA19B16199E653800EC51E5 /* Parse.framework in Frameworks */,
+				AFCAD7FE1999235E00CCA3F7 /* QuartzCore.framework in Frameworks */,
+				AFA19B20199E658500EC51E5 /* Security.framework in Frameworks */,
+				AFA19B22199E658C00EC51E5 /* StoreKit.framework in Frameworks */,
+				AFA19B24199E659300EC51E5 /* SystemConfiguration.framework in Frameworks */,
+				AFCAD8021999236700CCA3F7 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +285,13 @@
 		340C38A3197ADE16004D9332 = {
 			isa = PBXGroup;
 			children = (
+				AFA19B23199E659300EC51E5 /* SystemConfiguration.framework */,
+				AFA19B21199E658C00EC51E5 /* StoreKit.framework */,
+				AFA19B1F199E658500EC51E5 /* Security.framework */,
+				AFA19B1D199E657C00EC51E5 /* MobileCoreServices.framework */,
+				AFA19B1B199E656F00EC51E5 /* libz.dylib */,
+				AFA19B19199E656400EC51E5 /* CoreLocation.framework */,
+				AFA19B17199E655A00EC51E5 /* CFNetwork.framework */,
 				AFCAD8031999239C00CCA3F7 /* Libs */,
 				340C38AE197ADE16004D9332 /* Tuneful */,
 				340C38C1197ADE16004D9332 /* TunefulTests */,
@@ -288,6 +315,7 @@
 				340C38B1197ADE16004D9332 /* AppDelegate.swift */,
 				340C38B3197ADE16004D9332 /* ViewController.swift */,
 				AF30AED619881A9B0083BD54 /* AudioTable.swift */,
+				AFA19B13199E62B900EC51E5 /* AudioLibrary.swift */,
 				AF299D591986B63C00966930 /* Audio.swift */,
 				34F075B7197AE549004E819E /* Recorder.swift */,
 				340C38B5197ADE16004D9332 /* Main.storyboard */,
@@ -524,7 +552,7 @@
 		AFCAD8031999239C00CCA3F7 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				AFA19B11199E626700EC51E5 /* Parse.framework */,
+				AFA19B15199E653800EC51E5 /* Parse.framework */,
 				AF4EBDC91992CDE400C56EBC /* Extensions */,
 				AFCAD8011999236700CCA3F7 /* UIKit.framework */,
 				AFCAD7FF1999236300CCA3F7 /* CoreGraphics.framework */,
@@ -532,7 +560,6 @@
 				AFCAD7FB1999235900CCA3F7 /* libxml2.dylib */,
 				AFCAD7F91999235500CCA3F7 /* CoreImage.framework */,
 				AFCAD7F71999234F00CCA3F7 /* CoreText.framework */,
-				AFCAD7751999231C00CCA3F7 /* libSVGKit-iOS.1.2.0.a */,
 				AFCAD7761999231C00CCA3F7 /* usr */,
 				AF52FE2F1992D524007221A3 /* GLKit.framework */,
 				AF52FE2D1992D51F007221A3 /* AudioToolbox.framework */,
@@ -654,6 +681,7 @@
 				AF52FE1B1992D2FB007221A3 /* EZAudioFile.m in Sources */,
 				AF48F6A619919913007DC5EF /* StringExtension.swift in Sources */,
 				AF52FE231992D2FB007221A3 /* EZRecorder.m in Sources */,
+				AFA19B14199E62B900EC51E5 /* AudioLibrary.swift in Sources */,
 				AF52FE1A1992D2FB007221A3 /* AEFloatConverter.m in Sources */,
 				AF48F6A819919923007DC5EF /* UIColorExtension.swift in Sources */,
 				AF52FE1C1992D2FB007221A3 /* EZAudioPlayer.m in Sources */,
@@ -789,7 +817,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tuneful/Tuneful-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -814,7 +842,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tuneful/Tuneful-Bridging-Header.h";
 			};
