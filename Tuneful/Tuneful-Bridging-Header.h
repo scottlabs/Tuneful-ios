@@ -10,6 +10,7 @@
 #define Tuneful_Tuneful_Bridging_Header_h
 
 #include "EZAudio/EZAudio.h"
+#import "SVGKit.h"
 
 
 #endif

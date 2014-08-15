@@ -83,8 +83,8 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
 //        println("success from the view controller! \(recorder.url) \(self.recorder.outputFileURL)")
 
 //        println("successfully recorded \(recordingURL)")
-        let audio = Audio(url: self.recorder.outputFileURL!, audioLevels: self.recorder.audioLevels)
-        audioTable.add(audio)
+//        let audio = Audio(url: self.recorder.outputFileURL!, audioLevels: self.recorder.audioLevels)
+        audioTable.add(self.recorder.outputFileURL!)
         
 
     }

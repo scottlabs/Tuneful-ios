@@ -21,7 +21,10 @@ class AudioTable : UIViewController, UITableViewDelegate, UITableViewDataSource 
     }
     
     override init() {
+
         super.init(nibName: nil, bundle: nil)
+        self.view.backgroundColor = UIColor.greenColor()
+        self.tableView.backgroundColor = UIColor.brownColor()
         items = []
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -46,15 +49,19 @@ class AudioTable : UIViewController, UITableViewDelegate, UITableViewDataSource 
     {
         let cell = tableView .dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         cell.textLabel.text = String(format: "%i", indexPath.row+1)
+        cell.backgroundColor = UIColor.yellowColor()
         
         let index = indexPath.row
-//        println("table view, or return a cell")
-        let audioView = self.items[index].image
-        cell.textLabel.text = "something"
-        cell.addSubview(audioView)
-//        cell.textLabel.text =
-//        cell.textLabel.text = "hi"
-//        println(self.items)
+//        cell.contentView.autoresizingMask = .FlexibleWidth
+        cell.contentView.addSubview(self.items[index].view)
+        self.items[index].view.frame = cell.contentView.frame
+        self.items[index].audioPlot.frame = cell.contentView.frame
+        
+        println(tableView.frame)
+//        cell.contentView = UIView()
+//        cell.backgroundView = self.items[index].view
+//        cell.textLabel.text = "something"
+//        cell.addSubview(self.items[index].view)
         return cell
     }
     
@@ -104,10 +111,13 @@ class AudioTable : UIViewController, UITableViewDelegate, UITableViewDataSource 
         
     }
 
-    func add(item: Audio) {
+//    func add(item: Audio) {
+    func add(url : NSURL) {
+        let item = Audio(url: url)
+
 //        println("add")
 //        let test = CGRect(x: 0,y: 0, width: self.view.frame.width, height: cellHeight)
-        item.setFrame(CGRect(x: 0,y: 0, width: self.view.frame.width, height: cellHeight))
+//        item.setFrame(CGRect(x: 0,y: 0, width: self.view.frame.width, height: cellHeight))
         self.items.append(item)
         var row = self.items.count-1
         var indexPath = NSIndexPath(forRow:row,inSection:0)

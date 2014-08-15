@@ -9,19 +9,26 @@
 import Foundation
 import UIKit
 
+
 class Audio {
     let url : NSURL
-    let audioLevels : Array<Double>
-    var image : UIView = UIView()
-    var frame : CGRect = CGRect(x: 0,y: 0, width: 50, height: 50)
+//    let audioLevels : Array<Double>
+    var view : UIView = UIView(frame: CGRectZero)
+//    var frame : CGRect = CGRect(x: 0,y: 0, width: 50, height: 50)
     
     var audioFile = EZAudioFile()
     var audioPlot = EZAudioPlot()
     
     
-    init(url : NSURL, audioLevels : Array<Double> ) {
+    init(url : NSURL) {
+        self.view.backgroundColor = UIColor.blueColor()
+        self.view.autoresizingMask = .FlexibleWidth
         self.url = url
-        self.audioLevels = audioLevels
+//        self.audioLevels = audioLevels
+        
+        let svgImage = SVGKImage()
+        var svg = SVGKFastImageView(SVGKImage: svgImage)
+        
 //        renderImage()
         
 //        let bgColor = UIColor(rgba: "#F2DFD3")
@@ -38,7 +45,13 @@ class Audio {
         
         var completionBlock = { (waveformData: UnsafeMutablePointer<Float>, length: UInt32) -> Void in
             self.audioPlot.updateBuffer(waveformData, withBufferSize: length)
-            self.image.insertSubview(self.audioPlot, atIndex: 0)
+
+//            let svg : SVGKImageView = SVGKFastImageView(self.audioPlot)
+            // = [[SVGKFastImageView alloc] initWithImage:newImage]
+            self.view.insertSubview(self.audioPlot, atIndex: 0)
+//            self.audioPlot.frame = self.view.frame
+//            self.view = self.audioPlot
+            
 
 //            println(self.audioPlot)
         }
@@ -50,13 +63,13 @@ class Audio {
     func description() -> String {
         return url.description
     }
-    
-    func setFrame(frame : CGRect) {
-
-        self.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width, height: frame.height)
-//        image.frame = self.frame
-        audioPlot.frame = self.frame
-        
-//        renderImage()
-    }
+//    
+//    func setFrame(frame : CGRect) {
+//
+//        self.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width, height: frame.height)
+//        self.view.frame = self.frame
+//        audioPlot.frame = self.frame
+//
+//        
+//    }
 }
