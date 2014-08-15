@@ -11,6 +11,7 @@ import UIKit
 
 class AudioLibrary : UIViewController, UITableViewDataSource {
     var items : [Audio] = []
+    var user : PFUser?
     
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int
     {
@@ -41,6 +42,7 @@ class AudioLibrary : UIViewController, UITableViewDataSource {
 
     func add(url: NSURL) {
         let item = Audio(url: url)
+        item.user = user;
         
         self.items.append(item)
 

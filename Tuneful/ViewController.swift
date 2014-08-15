@@ -24,6 +24,8 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
     var player: AVAudioPlayer!
     
     let audioTable = AudioTable()
+    var user : PFUser!
+    
 //    let testView = TestView()
 
 //    var recordingURL : NSURL?
@@ -73,6 +75,43 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDe
         recorder.lineView!.backgroundColor = UIColor.blackColor()
 
         view.addSubview(recorder.lineView!)
+        
+        
+        
+        user = PFUser()
+        user.username = "suckFace2"
+        user.password = "hooha"
+        
+        if ( !user.username || !user.password ) {
+            println("looks like we gotta sign in")
+            user.signUpInBackgroundWithBlock({ (succeeded : Bool, error : NSError? ) -> Void in
+                if(error != nil) {
+                    println("Signup Error \(error!.localizedDescription)")
+                } else {
+                    println("signup done")
+                }
+                
+            })
+        } else {
+                            println("looks like we gotta log in")            
+            PFUser.logInWithUsernameInBackground(user.username, password: user.password, block: { (user : PFUser?, error : NSError?) -> Void in
+
+                if(error != nil) {
+                    println("Login Error \(error!.localizedDescription)")
+                } else if ( user == nil) {
+                    println("no user for some reason")
+                } else {
+
+                    println("login done")
+                    println(PFUser.currentUser())
+                    
+                    
+                }
+                
+            })
+        }
+        audioTable.audioLibrary.user = user
+
         
 
     }

@@ -12,10 +12,23 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
                             
     var window: UIWindow?
+    
 
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
-        // Override point for customization after application launch.
+        Parse.setApplicationId("G3DbZ5eGZNpXVkkgYNv5q3ySP23ZcSSp0ctowqAp", clientKey: "9PBjYXtKq1BJmRE0T416UrZEuhzS77hvrasIMOjX")
+        
+//        var object = PFObject(className: "TestClass")
+//        object.addObject("Banana", forKey: "favoriteFood")
+//        object.addObject("Chocolate", forKey: "favoriteIceCream")
+//        object.saveInBackground()
+        PFAnalytics.trackAppOpenedWithLaunchOptions(nil)
+        
+        
+        
+        
+        
+
         return true
     }
 

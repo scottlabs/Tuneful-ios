@@ -15,6 +15,7 @@ class AudioTable : UIViewController, UITableViewDelegate {
     var tableView: UITableView = UITableView()
     let cellHeight : CGFloat = 84
     let audioLibrary = AudioLibrary()
+
 //    var tableView = UITableView()
     
     required init(coder: NSCoder) {
